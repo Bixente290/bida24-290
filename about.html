@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BixFlix</title>
+    <link rel="stylesheet" href="bixflix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Add or override styles here for the about page */
+        .about-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 3rem;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1; /* Ensure content is above the background */
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/background/lastofus.avif') center/cover no-repeat;
+            z-index: -1; /* Place the background behind the content */
+        }
+
+        .about-container h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .about-container h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-container p {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            width: 200px;
+        }
+
+        .team-member h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">BixFlix</a>
+        <div class="menu-toggle">&#9776;</div> <!-- Hamburger icon -->
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movie.html" class="nav-link">Movies</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">More <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="about.html" class="dropdown-link">About Us</a>
+                        <a href="feedback.html" class="dropdown-link">Feedback</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="search">
+                <input type="text" class="search-input" placeholder="Search">
+                <i class="fa fa-search search-icon"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="about-container">
+        <h1>About BixFlix</h1>
+
+        <p>Welcome to BixFlix, your ultimate destination for streaming movies and TV shows online! We are passionate
+            about bringing you the best entertainment experience right at your fingertips.</p>
+
+        <h2>Our Mission</h2>
+        <p>Our mission is to provide a vast library of high-quality content, accessible anytime, anywhere. We strive
+            to curate a diverse selection of movies and shows to cater to every taste and preference.</p>
+
+        <h2>What We Offer</h2>
+        <ul>
+            <li>A wide range of movies and TV shows across various genres.</li>
+            <li>High-definition streaming for an immersive viewing experience.</li>
+            <li>Personalized recommendations to help you discover new favorites.</li>
+            <li>A user-friendly interface for easy navigation and browsing.</li>
+            <li>Regular updates with fresh content to keep you entertained.</li>
+        </ul>
+
+        <h2>Partnering with IMDb</h2>
+        <p>We're thrilled to announce our partnership with IMDb, the world's most popular and authoritative source for
+            movie, TV, and celebrity content. Together, we're building an awesome movie companion website that will
+            enhance your viewing experience like never before!</p>
+
+        <p>This collaboration will allow us to provide you with:</p>
+        <ul>
+            <li>In-depth movie information, including cast, crew, plot summaries, and user reviews, directly from
+                IMDb.</li>
+            <li>Seamless integration with IMDb's vast database, making it easier than ever to discover new movies and
+                shows.</li>
+            <li>Exclusive content and features that you won't find anywhere else.</li>
+        </ul>
+
+        <h2>Our Team</h2>
+        <p>BixFlix is powered by a dedicated team of entertainment enthusiasts, tech experts, and creative minds. We
+            are committed to delivering a seamless and enjoyable streaming experience for our users.</p>
+
+        <div class="team-members">
+            <div class="team-member">
+                <h3>Bixente (Me, ofcourse)</h3>
+                <p>CEO & Founder</p>
+            </div>
+            <div class="team-member">
+                <h3>Bixente (me again)</h3>
+                <p>Head of Content</p>
+            </div>
+            <div class="team-member">
+                <h3>Bixente (me again x2)</h3>
+                <p>Lead Developer</p>
+            </div>
+            <!-- Add more team members as needed -->
+        </div>
+
+        <h2>Contact Us</h2>
+        <p>Conact Us through the following channels:
+            <br>
+            Email: <a href="mailto:bixflix@gmail.com">bixflix@gmail.com</a>
+            <br>
+            Phone: +267 73 580 430
+            <br>
+            Address: Plot 123, Gaborone, Botswana
+        </p>
+    </div>
+
+    <!-- Footer (You can include your existing footer here) -->
+    <footer class="iq-bg-dark">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row footer-standard">
+                    <div class="col-lg-5">
+                        <div class="widget text-left">
+                            <div>
+                                <ul class="menu p-0">
+                                    <li><a href="index.html">Hompage</a></li>
+                                    <li><a href="feedback.html">Feedback</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="movie.html">Movies</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <p><small>@ 2023 BixFlix. All rights reserved.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <h6 class="footer-link-title">
+                            Follow Us:
+                        </h6>
+                        <ul class="info-share">
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-facebook"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-youtube"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-instagram"></i>
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <h6 class="footer-link-title">
+                                    BixFlix Website
+                                </h6>
+                                <div class="d-flex align-items-center">
+                                    <a href="#"><img src="images/footer/01.jpg" alt=""></a>
+                                    <br>
+                                    <a href="#" class="ml-3"><img src="images/footer/02.jpg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Dropdown Menu Toggle
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the click from closing the menu immediately
+                dropdown.classList.toggle('active');
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

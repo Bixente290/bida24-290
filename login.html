@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - BixFlix</title>
+    <link rel="stylesheet" href="bixflix.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">BixFlix</a>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movie.html" class="nav-link">Movies</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">More <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="about.html" class="dropdown-link">About Us</a>
+                        <a href="feedback.html" class="dropdown-link">Feedback</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="login-container">
+        <div class="login-form">
+            <h1>Login to BixFlix</h1>
+            <form action="index.html" method="post">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <div class="login-options">
+                <a href="#">Forgot Password?</a>
+                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="iq-bg-dark">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row footer-standard">
+                    <div class="col-lg-5">
+                        <div class="widget text-left">
+                            <div>
+                                <ul class="menu p-0">
+                                    <li><a href="#">Terms of Use</a></li>
+                                    <li><a href="#">Privacy-Policy</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Watch List</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <p><small>@ 2023 BixFlix. All rights reserved.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size:23px; border-radius: 50%;"><i
+                                        class="fab fa-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size:23px;"><i
+                                        class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size:23px;"><i
+                                        class="fab fa-google-plus"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size:23px;"><i
+                                        class="fab fa-youtube"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size:23px;"><i
+                                        class="fab fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <h6 class="footer-link-title">
+                                    BixFlix Website
+                                </h6>
+                                <div class="d-flex align-items-center">
+                                    <a href="#"><img src="images/footer/01.jpg" alt=""></a>
+                                    <br>
+                                    <a href="#" class="ml-3"><img src="images/footer/02.jpg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

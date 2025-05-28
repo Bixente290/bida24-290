@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies - BixFlix</title>
+    <link rel="stylesheet" href="bixflix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Add or override styles here for the movies page */
+        .movies-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: var(--text-primary);
+        }
+
+        .genre-section {
+            margin-bottom: 2rem;
+        }
+
+        .genre-section h2 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .movie-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .movie-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: var(--text-primary);
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .movie-card:hover .movie-title {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">BixFlix</a>
+        <div class="menu-toggle">&#9776;</div> <!-- Hamburger icon -->
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movie.html" class="nav-link">Movies</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">More <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="about.html" class="dropdown-link">About Us</a>
+                        <a href="feedback.html" class="dropdown-link">Feedback</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="search">
+                <input type="text" class="search-input" placeholder="Search">
+                <i class="fa fa-search search-icon"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="movies-container">
+        <h1>Movies</h1>
+        <div class="genre-sections">
+            <!-- Genre sections will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Footer (You can include your existing footer here) -->
+    <footer class="iq-bg-dark">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row footer-standard">
+                    <div class="col-lg-5">
+                        <div class="widget text-left">
+                            <div>
+                                <ul class="menu p-0">
+                                    <li><a href="index.html">Hompage</a></li>
+                                    <li><a href="feedback.html">Feedback</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="movie.html">Movies</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <p><small>@ 2023 BixFlix. All rights reserved.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <h6 class="footer-link-title">
+                            Follow Us:
+                        </h6>
+                        <ul class="info-share">
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-facebook"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-youtube"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-instagram"></i>
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <h6 class="footer-link-title">
+                                    BixFlix Website
+                                </h6>
+                                <div class="d-flex align-items-center">
+                                    <a href="#"><img src="images/footer/01.jpg" alt=""></a>
+                                    <br>
+                                    <a href="#" class="ml-3"><img src="images/footer/02.jpg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Dropdown Menu Toggle
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the click from closing the menu immediately
+                dropdown.classList.toggle('active');
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+
+        // Movie Data (Replace with your actual movie data source)
+        const movies = [
+            {
+                title: "Final Fantasy VII: Advent Children",
+                poster: "images/poster/Final-Fantasy-7-Advent-Children-Poster-1.avif",
+                imdbId: "tt0385700", // Replace with the actual IMDb ID
+                genre: "Action"
+            },
+            {
+                title: "Super Mario Bros",
+                poster: "images/poster/super-mario-bros-poster.jpg",
+                imdbId: "tt21903362", // Replace with the actual IMDb ID
+                genre: "Animation"
+            },
+            {
+                title: "One Piece Stampede",
+                poster: "images/poster/onepiecest.png",
+                imdbId: "tt9424372", // Replace with the actual IMDb ID
+                genre: "Adventure"
+            },
+            {
+                title: "Dune",
+                poster: "images/poster/Dune-poster-of-giant-dune.avif",
+                imdbId: "tt1160419", // Replace with the actual IMDb ID
+                genre: "Sci-Fi"
+            },
+            {
+                title: "The Batman",
+                poster: "images/poster/thebatman.jpg",
+                imdbId: "tt1877830", // Replace with the actual IMDb ID
+                genre: "Action"
+            },
+            {
+                title: "Iron Man",
+                poster: "images/poster/ironman.jpg",
+                imdbId: "tt0371746", // Replace with the actual IMDb ID
+                genre: "Action"
+            },
+            {
+                title: "Deadpool",
+                poster: "images/poster/deadpool.jpg",
+                imdbId: "tt1431045", // Replace with the actual IMDb ID
+                genre: "Action"
+            },
+            {
+                title: "Jurassic Park",
+                poster: "images/poster/jurassic.jpg",
+                imdbId: "tt0107290", // Replace with the actual IMDb ID
+                genre: "Action"
+            },
+            {
+                title: "Ghostbusters",
+                poster: "images/poster/ghostbuster.jpg",
+                imdbId: "tt10364034", // Replace with the actual IMDb ID
+                genre: "Adventure"
+            },
+            {
+                title: "Taken 3",
+                poster: "images/poster/taken3.jpg",
+                imdbId: "tt2446042", // Replace with the actual IMDb ID
+                genre: "Action"
+            },
+            {
+                title: "Batman: Mask of the Phantasm",
+                poster: "images/poster/batmanphantom.jpg",
+                imdbId: "tt0106364", // Replace with the actual IMDb ID
+                genre: "Animation"
+            },
+            {
+                title: "Spider-Man: Into the Spider-Verse",
+                poster: "images/poster/spiderverse.jpg",
+                imdbId: "tt4633694", // Replace with the actual IMDb ID
+                genre: "Animation"
+            },
+            {
+                title: "Wreck-It Ralph",
+                poster: "images/poster/wrek-it-ralph.jpg",
+                imdbId: "tt1772341", // Replace with the actual IMDb ID
+                genre: "Animation"
+            },
+            {
+                title: "How to Train Your Dragon",
+                poster: "images/poster/how2dragon.jpg",
+                imdbId: "tt0892769", // Replace with the actual IMDb ID
+                genre: "Animation"
+            },
+            {
+                title: "Big Hero 6",
+                poster: "images/poster/bighero6.jpg",
+                imdbId: "tt2245084", // Replace with the actual IMDb ID
+                genre: "Animation"
+            },
+            {
+                title: "Miraculous: Ladybug & Cat Noir",
+                poster: "images/poster/ladybug.webp",
+                imdbId: "tt10364034", // Replace with the actual IMDb ID
+                genre: "Adventure"
+            },
+            {
+                title: "Ben 10: Destroy All Aliens",
+                poster: "images/poster/ben10.jpg",
+                imdbId: "tt2290147", // Replace with the actual IMDb ID
+                genre: "Adventure"
+            },
+            {
+                title: "Mr. Peabody & Sherman",
+                poster: "images/poster/peapody.jpg",
+                imdbId: "tt0864835", // Replace with the actual IMDb ID
+                genre: "Adventure"
+            },
+            {
+                title: "Phineas and Ferb: The Movie",
+                poster: "images/poster/phineas_and_ferb.jpg",
+                imdbId: "tt1825918", // Replace with the actual IMDb ID
+                genre: "Adventure"
+            },
+            {
+                title: "The Fall",
+                poster: "images/poster/thefall.jpg",
+                imdbId: "tt0460791", // Replace with the actual IMDb ID
+                genre: "Sci-Fi"
+            },
+            {
+                title: "E.T. the Extra-Terrestrial",
+                poster: "images/poster/ETmovie.jpg",
+                imdbId: "tt0083866", // Replace with the actual IMDb ID
+                genre: "Sci-Fi"
+            },
+            {
+                title: "Back to the Future",
+                poster: "images/poster/back2future.jpg",
+                imdbId: "tt0088763", // Replace with the actual IMDb ID
+                genre: "Sci-Fi"
+            },
+            {
+                title: "Doctor Who",
+                poster: "images/poster/drwho.webp",
+                imdbId: "tt0436992", // Replace with the actual IMDb ID
+                genre: "Sci-Fi"
+            },
+            {
+                title: "Tron",
+                poster: "images/poster/tron.jpg",
+                imdbId: "tt1104001", // Replace with the actual IMDb ID
+                genre: "Sci-Fi"
+            },
+            // Add more movies here
+        ];
+
+        // Function to generate movie cards
+        function generateMovieCards(movies) {
+            let movieCardsHTML = '';
+
+            movies.forEach(movie => {
+                const imdbLink = `https://www.imdb.com/title/${movie.imdbId}`; // Construct IMDb link
+                movieCardsHTML += `
+                    <div class="movie-card">
+                        <a href="${imdbLink}" target="_blank" rel="noopener">
+                            <img src="${movie.poster}" alt="${movie.title}">
+                            <div class="movie-title">${movie.title}</div>
+                        </a>
+                    </div>
+                `;
+            });
+
+            return movieCardsHTML;
+        }
+
+        // Function to group movies by genre
+        function groupMoviesByGenre(movies) {
+            const groupedMovies = {};
+
+            movies.forEach(movie => {
+                if (!groupedMovies[movie.genre]) {
+                    groupedMovies[movie.genre] = [];
+                }
+                groupedMovies[movie.genre].push(movie);
+            });
+
+            return groupedMovies;
+        }
+
+        // Function to generate genre sections
+        function generateGenreSections(groupedMovies) {
+            const genreSectionsContainer = document.querySelector('.genre-sections');
+            let genreSectionsHTML = '';
+
+            for (const genre in groupedMovies) {
+                genreSectionsHTML += `
+                    <div class="genre-section">
+                        <h2>${genre}</h2>
+                        <div class="movies-grid">
+                            ${generateMovieCards(groupedMovies[genre])}
+                        </div>
+                    </div>
+                `;
+            }
+
+            genreSectionsContainer.innerHTML = genreSectionsHTML;
+        }
+
+        // Group movies by genre
+        const groupedMovies = groupMoviesByGenre(movies);
+
+        // Generate genre sections when the page loads
+        window.addEventListener('load', () => {
+            generateGenreSections(groupedMovies);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - BixFlix</title>
+    <link rel="stylesheet" href="bixflix.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Add or override styles here for the feedback page */
+        .feedback-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: var(--text-primary); /* Use your CSS variable for text color */
+        }
+
+        .feedback-container h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: 0.25rem;
+            background-color: transparent;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary); /* Use your CSS variable for primary color */
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary); /* Use your CSS variable for primary color */
+            color: var(--text-primary);
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover); /* Use your CSS variable for primary hover color */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">BixFlix</a>
+        <div class="menu-toggle">&#9776;</div> <!-- Hamburger icon -->
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movie.html" class="nav-link">Movies</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">More <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="about.html" class="dropdown-link">About Us</a>
+                        <a href="feedback.html" class="dropdown-link">Feedback</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="search">
+                <input type="text" class="search-input" placeholder="Search">
+                <i class="fa fa-search search-icon"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="feedback-container">
+        <h1>Feedback</h1>
+        <form action="#" method="post"> <!-- Replace # with your form submission URL -->
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="feedback">Feedback:</label>
+                <textarea id="feedback" name="feedback" placeholder="Your Feedback" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <!-- Footer (You can include your existing footer here) -->
+    <footer class="iq-bg-dark">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row footer-standard">
+                    <div class="col-lg-5">
+                        <div class="widget text-left">
+                            <div>
+                                <ul class="menu p-0">
+                                    <li><a href="#">Terms of Use</a></li>
+                                    <li><a href="#">Privacy-Policy</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Watch List</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <p><small>@ 2023 BixFlix. All rights reserved.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <h6 class="footer-link-title">
+                            Follow Us:
+                        </h6>
+                        <ul class="info-share">
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-facebook"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-youtube"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-instagram"></i>
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <h6 class="footer-link-title">
+                                    BixFlix Website
+                                </h6>
+                                <div class="d-flex align-items-center">
+                                    <a href="#"><img src="images/footer/01.jpg" alt=""></a>
+                                    <br>
+                                    <a href="#" class="ml-3"><img src="images/footer/02.jpg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Dropdown Menu Toggle
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the click from closing the menu immediately
+                dropdown.classList.toggle('active');
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

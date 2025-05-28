@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BixFlix</title>
+    <link rel="stylesheet" href="bixflix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Add Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAq6z5l5l5l5l5l5l5l5l5l5l5l5" crossorigin="anonymous">
+    <style>
+        /* Style the popover */
+        .movie-popover {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: none;
+            width: 400px;
+            /* Adjust as needed */
+            max-width: 90%;
+            /* Ensure it fits on smaller screens */
+        }
+
+        .movie-popover .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .movie-popover h3 {
+            margin-top: 0;
+        }
+
+        /* Style the overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black */
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">BixFlix</a>
+        <div class="menu-toggle">&#9776;</div> <!-- Hamburger icon -->
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movie.html" class="nav-link">Movies</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">More <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="about.html" class="dropdown-link">About Us</a>
+                        <a href="feedback.html" class="dropdown-link">Feedback</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="search">
+                <input type="text" class="search-input" placeholder="Search">
+                <i class="fa fa-search search-icon"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <div class="banner-content active">
+            <h2 class="banner-title">Final Fantasy VII: Advent Children</h2>
+            <div class="movie-meta">
+                <span>PG-13</span>
+                <span>2h 1min</span>
+                <span>Action</span>
+            </div>
+            <p class="banner-description">Two years after leading the charge against Sephiroth, Cloud must face a new threat from three mysterious brothers.</p>
+            <div class="button-group">
+                <a href="#" class="btn btn-watch"><i class="fa fa-play"></i> Watch Now</a>
+                <a href="#" class="btn btn-list"><i class="fa fa-list"></i> Add to List</a>
+            </div>
+        </div>
+
+        <div class="carousel-box">
+            <div class="carousel main-carousel">
+                <div class="carousel-item" data-index="0">
+                    <img src="images/poster/Final-Fantasy-7-Advent-Children-Poster-1.avif"
+                        alt="Final Fantasy VII: Advent Children">
+                </div>
+                <div class="carousel-item" data-index="1">
+                    <img src="images/poster/super-mario-bros-poster.jpg" alt="Super Mario Bros">
+                </div>
+                <div class="carousel-item" data-index="2">
+                    <img src="images/poster/onepiecest.png" alt="One Piece Stampede">
+                </div>
+                <div class="carousel-item" data-index="3">
+                    <img src="images/poster/Dune-poster-of-giant-dune.avif" alt="Dune">
+                </div>
+                <div class="carousel-item" data-index="4">
+                    <img src="images/poster/thebatman.jpg" alt="The Batman">
+                </div>
+                <!-- Add more carousel items -->
+            </div>
+            <div class="play-trailer">
+                <i class="fa fa-circle-play"></i> Play Trailer
+            </div>
+        </div>
+    </section>
+
+    <section class="trending-movies">
+        <h2>Trending Movies</h2>
+        <div class="movie-slider trending-slider">
+            <!-- Trending movies will be added here dynamically -->
+
+        </div>
+    </section>
+
+    <section class="genres">
+        <h2>Genres</h2>
+        <div class="genre-sections">
+            <!-- Genre sections will be added here dynamically -->
+        </div>
+    </section>
+
+    <div class="trailer">
+        <div class="trailer-container">
+            <video src="" controls></video>
+            <i class="fa fa-times close-trailer"></i>
+        </div>
+    </div>
+
+    <!-- Popover Structure -->
+    <div class="movie-popover">
+        <span class="close-button">&times;</span>
+        <h3 class="popover-title"></h3>
+        <p class="popover-description"></p>
+        <a href="#" class="watch-link">Watch Now</a>
+        <a href="#" class="list-link">Add to List</a>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Footer -->
+    <footer class="iq-bg-dark">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row footer-standard">
+                    <div class="col-lg-5">
+                        <div class="widget text-left">
+                            <div>
+                                <ul class="menu p-0">
+                                    <li><a href="index.html">Hompage</a></li>
+                                    <li><a href="feedback.html">Feedback</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="movie.html">Movies</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <p><small>@ 2023 BixFlix. All rights reserved.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <h6 class="footer-link-title">
+                            Follow Us:
+                        </h6>
+                        <ul class="info-share">
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-facebook"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-youtube"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i>
+                                        <i class="fa fa-instagram"></i>
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                        <div class="widget text-left">
+                            <div class="textwidget">
+                                <h6 class="footer-link-title">
+                                    BixFlix Website
+                                </h6>
+                                <div class="d-flex align-items-center">
+                                    <a href="#"><img src="images/footer/01.jpg" alt=""></a>
+                                    <br>
+                                    <a href="#" class="ml-3"><img src="images/footer/02.jpg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add jQuery and Slick Carousel JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        const banner = document.querySelector('.banner');
+        const bannerTitle = document.querySelector('.banner-title');
+        const movieMeta = document.querySelector('.movie-meta');
+        const bannerDescription = document.querySelector('.banner-description');
+        const mainCarousel = document.querySelector('.main-carousel'); // Corrected selector
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const trendingSlider = document.querySelector('.trending-slider');
+        const genreSections = document.querySelector('.genre-sections');
+        const watchBtn = document.querySelector(".btn-watch");
+        const listBtn = document.querySelector(".btn-list");
+
+        // Original Movie Data (Hardcoded)
+        const originalMovies = [
+            {
+                title: "Final Fantasy VII: Advent Children",
+                meta: "PG-13 | 2h 1min | Action",
+                description: "Two years after leading the charge against Sephiroth, Cloud must face a new threat from three mysterious brothers.",
+                backgroundImage: "images/movies/finalfantasyadvent.jpg",
+                genre: "Action",
+                isTrending: true,
+                watchUrl: "watch/finalfantasy.html",
+                listUrl: "mylist/add.html?movie=finalfantasy",
+                posterImage: "images/poster/Final-Fantasy-7-Advent-Children-Poster-1.avif",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0385700" // FFVII IMDb ID
+            },
+            {
+                title: "Super Mario Bros",
+                meta: "PG | 1h 32min | Animation",
+                description: "Brooklyn plumbers Mario and Luigi find themselves in the Mushroom Kingdom, where they must team up with Princess Peach to stop the villainous Bowser.",
+                backgroundImage: "images/movies/mario.jpg",
+                genre: "Animation",
+                isTrending: true,
+                watchUrl: "watch/mario.html",
+                listUrl: "mylist/add.html?movie=mario",
+                posterImage: "images/poster/super-mario-bros-poster.jpg",
+                trailerUrl: "trailers/mario_trailer.mp4",
+                imdbId: "tt21903362" // Mario IMDb ID
+            },
+            {
+                title: "One Piece Stampede",
+                meta: "PG-13 | 1h 41min | Adventure",
+                description: "The world's pirates gather at the Pirates Expo, organized by Buena Festa. The purpose: to find a lost treasure left behind by the Pirate King, Gol D. Roger.",
+                backgroundImage: "images/movies/onepiece-stampede.avif",
+                genre: "Adventure",
+                isTrending: true,
+                watchUrl: "watch/onepiece.html",
+                listUrl: "mylist/add.html?movie=onepiece",
+                posterImage: "images/poster/onepiecest.png",
+                trailerUrl: "trailers/Onepiece_trailer.mp4",
+                imdbId: "tt9424372" // One Piece IMDb ID
+            },
+            {
+                title: "Dune",
+                meta: "PG-13 | 2h 35min | Sci-Fi",
+                description: "A noble family becomes embroiled in a war for control over the galaxy's most valuable asset while its heir becomes troubled by visions of a dark future.",
+                backgroundImage: "images/movies/dune-7.webp",
+                genre: "Sci-Fi",
+                isTrending: true,
+                watchUrl: "watch/dune.html",
+                listUrl: "mylist/add.html?movie=dune",
+                posterImage: "images/poster/Dune-poster-of-giant-dune.avif",
+                trailerUrl: "trailers/dune_trailer.mp4",
+                imdbId: "tt1160419" // Dune IMDb ID
+            },
+            {
+                title: "The Batman",
+                meta: "PG | 1h 30min | Action",
+                description: "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.",
+                backgroundImage: "images/movies/batman.jpg",
+                genre: "Action",
+                isTrending: true,
+                watchUrl: "watch/batman.html",
+                listUrl: "mylist/add.html?movie=batman",
+                posterImage: "images/poster/thebatman.jpg",
+                trailerUrl: "trailers/thebatman_trailer.mp4",
+                imdbId: "tt1877830" // The Batman IMDb ID
+            },
+            {
+                title: "Iron Man",
+                meta: "PG-13 | 2h 0min | Action",
+                description: "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+                backgroundImage: "images/movies/finalfantasyadvent.jpg",
+                genre: "Action",
+                isTrending: false,
+                posterImage: "images/poster/ironman.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0371746" //Iron Man IMDb ID
+            },
+            {
+                title: "Deadpool",
+                meta: "PG-13 | 2h 0min | Action",
+                description: "A wisecracking mercenary gets experimented on and becomes immortal, but with a scarred face, he sets out to hunt down the man who ruined his looks.",
+                backgroundImage: "images/movies/finalfantasyadvent.jpg",
+                genre: "Action",
+                isTrending: false,
+                posterImage: "images/poster/deadpool.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt1431045" // Deadpool IMDb ID
+            },
+            {
+                title: "Jurassic Park",
+                meta: "PG-13 | 2h 0min | Action",
+                description: "A pragmatic paleontologist visiting an almost completed theme park is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
+                backgroundImage: "images/movies/finalfantasyadvent.jpg",
+                genre: "Action",
+                isTrending: false,
+                posterImage: "images/poster/jurassic.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0107290" // Jurassic Park IMDb ID
+            },
+            {
+                title: "Ghostbusters",
+                meta: "PG-13 | 2h 0min | Action",
+                description: "Three parapsychologists forced out of their university funding set up shop as a unique ghost removal service.",
+                backgroundImage: "images/movies/finalfantasyadvent.jpg",
+                genre: "Action",
+                isTrending: false,
+                posterImage: "images/poster/ghostbuster.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt10364034" // Ghostbusters IMDb ID
+            },
+            {
+                title: "Taken 3",
+                meta: "PG-13 | 2h 0min | Action",
+                description: "Liam Neeson is back as Bryan Mills, whose reconciliation with his ex-wife is tragically cut short when she is brutally murdered. Consumed with rage, and framed for the crime, he goes on the run to evade the relentless pursuit of the CIA, FBI and police. For one last time, Mills must use his particular set of skills to track down the real killers, exact his unique brand of justice, and protect the only thing that matters to him now - his daughter.",
+                backgroundImage: "images/movies/finalfantasyadvent.jpg",
+                genre: "Action",
+                isTrending: false,
+                posterImage: "images/poster/taken3.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt2446042" // Taken 3 IMDb ID
+            },
+             {
+                title: "Wrek-It Ralph",
+                meta: "PG | 1h 41min | Animation",
+                description: "Ralph is tired of playing the role of a bad guy and embarks on a journey to become a video game hero. But he accidentally lets loose a deadly enemy that threatens the entire arcade.",
+                backgroundImage: "images/movies/mario.jpg",
+                genre: "Animation",
+                isTrending: false,
+                posterImage: "images/poster/wrek-it-ralph.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt6718170"
+            },
+            {
+                title: "Batman: Mask of the Phantasm",
+                meta: "PG | 1h 30min | Animation",
+                description: "A new vigilante mysteriously appears in Gotham, and begins eliminating the city's crime bosses. As Batman investigates, his alter ego Bruce Wayne rekindles a romance with an old flame, Andrea Beaumont.",
+                backgroundImage: "images/movies/mario.jpg",
+                genre: "Animation",
+                isTrending: false,
+                posterImage: "images/poster/batmanphantom.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0106364"
+            },
+            {
+                title: "Spider-Man: Into the Spider-Verse",
+                meta: "PG | 1h 30min | Animation",
+                description: "Teen Miles Morales becomes Spider-Man of his reality, crossing his path with five counterparts from other dimensions to stop a threat for all realities.",
+                backgroundImage: "images/movies/mario.jpg",
+                genre: "Animation",
+                isTrending: false,
+                posterImage: "images/poster/spiderverse.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt4633694"
+            },
+            {
+                title: "How to Train Your Dragon",
+                meta: "PG | 1h 30min | Animation",
+                description: "A hapless young Viking who aspires to hunt dragons becomes the unexpected friend of a young dragon, and learns there may be more to the creatures than he assumed.",
+                backgroundImage: "images/movies/mario.jpg",
+                genre: "Animation",
+                isTrending: false,
+                posterImage: "images/poster/how2dragon.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0892769"
+            },
+            {
+                title: "Big Hero 6",
+                meta: "PG | 1h 30min | Animation",
+                description: "A special bond develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.",
+                backgroundImage: "images/movies/mario.jpg",
+                genre: "Animation",
+                isTrending: false,
+                posterImage: "images/poster/bighero6.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt2245084"
+            },
+            {
+                title: "One Piece Stampede",
+                meta: "PG-13 | 1h 45min | Adventure",
+                description: "The world's pirates gather at the Pirates Expo, organized by Buena Festa. The purpose: to find a lost treasure left behind by the Pirate King, Gol D. Roger.",
+                backgroundImage: "images/movies/onepiece-stampede.avif",
+                genre: "Adventure",
+                isTrending: false,
+                posterImage: "images/poster/onepiecest.png",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt9430698"
+            },
+            {
+                title: "Miraculous: Ladybug & Cat Noir",
+                meta: "PG-13 | 1h 45min | Adventure",
+                description: "An ordinary teen Marinette has been chosen to save Paris from evil! With the help of her kwami, Tikki, she transforms into Ladybug. Joined by Cat Noir, Ladybug must balance her superhero duties with the pressures of ordinary life.",
+                backgroundImage: "images/movies/onepiece-stampede.avif",
+                genre: "Adventure",
+                isTrending: false,
+                posterImage: "images/poster/ladybug.webp",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt10364034"
+            },
+            {
+                title: "Ben 10: Destroy All Aliens",
+                meta: "PG-13 | 1h 45min | Adventure",
+                description: "Ben, Gwen, and Kevin are attacked by a mysterious alien. They soon discover that the alien is a program designed to eliminate all aliens, including Ben.",
+                backgroundImage: "images/movies/onepiece-stampede.avif",
+                genre: "Adventure",
+                isTrending: false,
+                posterImage: "images/poster/ben10.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt2290147"
+            },
+            {
+                title: "Mr. Peabody & Sherman",
+                meta: "PG-13 | 1h 45min | Adventure",
+                description: "An advanced canine and his adopted son travel through time to fix a rip in the space-time continuum.",
+                backgroundImage: "images/movies/onepiece-stampede.avif",
+                genre: "Adventure",
+                isTrending: false,
+                posterImage: "images/poster/peapody.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0864835"
+            },
+            {
+                title: "Phineas and Ferb: The Movie",
+                meta: "PG-13 | 1h 45min | Adventure",
+                description: "Phineas and Ferb build a portal to another dimension where they meet alternate versions of themselves.",
+                backgroundImage: "images/movies/onepiece-stampede.avif",
+                genre: "Adventure",
+                isTrending: false,
+                posterImage: "images/poster/phineas_and_ferb.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt1825918"
+            },
+            {
+                title: "The Fall",
+                meta: "PG-13 | 2h 40min | Sci-Fi",
+                description: "In a hospital in 1920s Los Angeles, a bedridden stuntman captivates a young patient with an elaborate fantasy narrative.",
+                backgroundImage: "images/movies/dune-7.webp",
+                genre: "Sci-Fi",
+                isTrending: false,
+                posterImage: "images/poster/thefall.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0460791"
+            },
+            {
+                title: "E.T. the Extra-Terrestrial",
+                meta: "PG-13 | 2h 40min | Sci-Fi",
+                description: "A troubled child summons the courage to help a friendly alien escape Earth and return to his home world.",
+                backgroundImage: "images/movies/dune-7.webp",
+                genre: "Sci-Fi",
+                isTrending: false,
+                posterImage: "images/poster/ETmovie.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0083866"
+            },
+            {
+                title: "Back to the Future",
+                meta: "PG-13 | 2h 40min | Sci-Fi",
+                description: "Marty McFly, a 17-year-old high school student, is accidentally sent thirty years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.",
+                backgroundImage: "images/movies/dune-7.webp",
+                genre: "Sci-Fi",
+                isTrending: false,
+                posterImage: "images/poster/back2future.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0088763"
+            },
+            {
+                title: "Doctor Who",
+                meta: "PG-13 | 2h 40min | Sci-Fi",
+                description: "The Doctor is a Time Lord: a space- and time-traveling humanoid alien from the planet Gallifrey. He explores the universe in his time-traveling space ship, the TARDIS. His companions change with each regeneration.",
+                backgroundImage: "images/movies/dune-7.webp",
+                genre: "Sci-Fi",
+                isTrending: false,
+                posterImage: "images/poster/drwho.webp",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt0436992"
+            },
+            {
+                title: "Tron",
+                meta: "PG-13 | 2h 40min | Sci-Fi",
+                description: "A computer hacker is abducted into the digital world and forced to participate in gladiatorial games where his only chance of escape is with the help of a heroic security program.",
+                backgroundImage: "images/movies/dune-7.webp",
+                genre: "Sci-Fi",
+                isTrending: false,
+                posterImage: "images/poster/tron.jpg",
+                trailerUrl: "trailers/ff7_adventchilren.mp4",
+                imdbId: "tt1104001"
+            }
+            // Add more movie data
+        ];
+
+        // Movie Data (will be populated from JSON or fallback to originalMovies)
+        let movies = [];
+
+        // Function to initialize the page with movie data
+        function initializePage(movieData) {
+            movies = movieData; // Set the movies array
+
+            // Function to update banner content
+            function updateBanner(index) {
+                const movie = movies[index];
+                bannerTitle.textContent = movie.title;
+                movieMeta.textContent = movie.meta;
+                bannerDescription.textContent = movie.description;
+                banner.style.backgroundImage = `url(${movie.backgroundImage})`;
+
+                // Update buttons
+                watchBtn.href = movie.watchUrl || '#'; // Use movie's watch URL, fallback to '#'
+                listBtn.href = movie.listUrl || '#'; // Use movie's list URL, fallback to '#'
+            }
+
+            // Event listener for carousel item clicks (Simulating a carousel change)
+            carouselItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const index = parseInt(item.dataset.index);
+                    updateBanner(index);
+                });
+            });
+
+            // Initialize banner with the first movie
+            updateBanner(0);
+
+            // Trailer Modal Logic (unchanged)
+            const trailer = document.querySelector('.trailer');
+            const closeTrailer = document.querySelector('.close-trailer');
+            const playTrailerButton = document.querySelector('.play-trailer');
+            const trailerVideo = trailer.querySelector('video'); // Get the video element
+
+            playTrailerButton.addEventListener('click', () => {
+                const currentMovieIndex = parseInt(mainCarousel.querySelector('.slick-current').dataset.slickIndex);
+                const movie = movies[currentMovieIndex];
+                trailerVideo.src = movie.trailerUrl; // Set the trailer source
+                trailer.classList.add('active');
+                trailerVideo.play(); // Start playing the trailer
+            })
+
+            closeTrailer.addEventListener('click', () => {
+                trailer.classList.remove('active');
+                trailerVideo.pause(); // Pause the trailer
+                trailerVideo.currentTime = 0; // Reset the trailer to the beginning
+            })
+
+            // --- New Code for Trending and Genres ---
+
+            // 1. Filter Trending Movies
+            const trendingMovies = movies.filter(movie => movie.isTrending);
+
+            // 2. Function to Generate Movie Slider HTML (Posters Only)
+            function generateMovieSliderHTML(moviesArray) {
+                let sliderHTML = '';
+                moviesArray.forEach((movie, index) => {
+                    const imdbLink = movie.imdbId ? `https://www.imdb.com/title/${movie.imdbId}` : '#';
+                    sliderHTML += `
+                    <div class="movie-item">
+                        <a href="${imdbLink}" target="_blank" rel="noopener">
+                            <img src="${movie.posterImage}" alt="${movie.title}">
+                            <div class="movie-name">${movie.title}</div>
+                        </a>
+                    </div>
+                `;
+                });
+                return sliderHTML;
+            }
+
+            // 3. Add Trending Movies to Slider
+            trendingSlider.innerHTML = generateMovieSliderHTML(trendingMovies);
+
+            // 4. Initialize Slick Carousel for Trending Movies
+            initializeSlick(trendingSlider);
+
+            // 5. Get Unique Genres
+            const uniqueGenres = [...new Set(movies.map(movie => movie.genre))];
+
+            // 6. Function to Generate Genre Section HTML
+            function generateGenreSectionHTML(genre) {
+                return `
+                <div class="genre-section">
+                    <h2>${genre}</h2>
+                    <div class="movie-slider genre-slider">
+                        <!-- Movies for this genre will be added here -->
+                    </div>
+                </div>
+            `;
+            }
+
+            // 7. Add Genre Sections to HTML
+            uniqueGenres.forEach(genre => {
+                genreSections.innerHTML += generateGenreSectionHTML(genre);
+            });
+
+            // 8. Populate Genre Sections with Movies
+            const genreSectionsList = document.querySelectorAll('.genre-section');
+            genreSectionsList.forEach(genreSection => {
+                const genre = genreSection.querySelector('h2').textContent;
+                const genreMovies = movies.filter(movie => movie.genre === genre);
+                const genreSlider = genreSection.querySelector('.genre-slider');
+                genreSlider.innerHTML = generateMovieSliderHTML(genreMovies);
+
+                // Initialize Slick Carousel for each genre
+                initializeSlick(genreSlider);
+            });
+
+            // Initialize Slick Carousel for Main Carousel
+            $(mainCarousel).slick({
+                dots: false,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 3, // Adjust as needed
+                slidesToScroll: 1,
+                centerMode: true,
+                variableWidth: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+
+            // Automatic carousel transition every 3 seconds
+            setInterval(() => {
+                $(mainCarousel).slick('slickNext');
+            }, 3000);
+
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navList = document.querySelector('.nav-list');
+
+            menuToggle.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+
+            // Dropdown Menu Toggle
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent the click from closing the menu immediately
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', () => {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+
+            // --- Popover Functions ---
+            const moviePopover = document.querySelector('.movie-popover');
+            const popoverTitle = document.querySelector('.popover-title');
+            const popoverDescription = document.querySelector('.popover-description');
+            const closeButton = document.querySelector('.close-button');
+            const overlay = document.querySelector('.overlay');
+            const popoverWatchLink = document.querySelector('.movie-popover .watch-link');
+            const popoverListLink = document.querySelector('.movie-popover .list-link');
+
+            function showPopover(index) {
+                const movie = movies[index];
+                popoverTitle.textContent = movie.title;
+                popoverDescription.textContent = movie.description;
+                popoverWatchLink.href = movie.watchUrl || '#'; // Use movie's watch URL
+                popoverListLink.href = movie.listUrl || '#';   // Use movie's list URL
+
+                moviePopover.style.display = 'block';
+                overlay.style.display = 'block';
+            }
+
+            closeButton.addEventListener('click', () => {
+                moviePopover.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+
+            overlay.addEventListener('click', () => {
+                moviePopover.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+
+            function initializeSlick(sliderElement) {
+                $(sliderElement).slick({
+                    dots: false,
+                    infinite: true,
+                    speed: 5000,
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 3
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1
+                            }
+                        }
+                    ]
+                });
+            }
+        }
+
+        // Attempt to fetch movie data from JSON
+        fetch('movies.json')
+            .then(response => response.json())
+            .then(data => {
+                initializePage(data); // Initialize with JSON data
+            })
+            .catch(error => {
+                console.error('Error fetching movie data:', error);
+                console.log('Falling back to original movie data.');
+                initializePage(originalMovies); // Initialize with original movie data
+            });
+    </script>
+</body>
+</html>
